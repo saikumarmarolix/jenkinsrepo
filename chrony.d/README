@@ -1,0 +1,35 @@
+# overview #
+
+This directory splits up the configuration of chrony into multiple fragments so
+that NTP servers can be more easily dynamically configured at an instance's
+launch time without losing customizations at a global level.
+
+Files found under the /etc/chrony.d directory with the ".conf" extension are
+parsed in the lexicographical order of the file names when chronyd starts up.
+
+Files in this directory or in /run/chrony.d that end with the ".sources"
+extension can only contain the "peer", "pool" and "server" directives and must
+have all lines terminated by a trailing newline. There is no need to restart
+chronyd for these time sources to be usable, running '# chronyc reload sources'
+is sufficient.
+
+# configuration #
+
+chrony on Amazon Linux defaults to using Amazon Time Sync time sources via both
+link-local and remote endpoints.
+
+There are several mechanisms by which you may override the default configuration
+if needed:
+
+1. You can switch to the pool.ntp.org time server pool by setting
+   USE_AMAZON_NTP_ENDPOINTS=no in /etc/sysconfig/chrony and invoking the
+   chrony-config service (systemctl restart chrony-config.service).
+
+2. You can provide a custom list of time sources via DHCP by creating a new DHCP
+   Option Set and associating it with your VPC.  See
+   https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html for
+   details.
+
+3. You can configure cloud-init's NTP module with various chrony configuration
+   parameters and sources per
+   https://cloudinit.readthedocs.io/en/22.2.2/topics/modules.html#ntp

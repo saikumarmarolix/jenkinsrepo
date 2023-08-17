@@ -1,0 +1,1 @@
+root=UUID=985fb096-4ab0-476d-a220-d46fd6bcaa23 ro  console=tty0 console=ttyS0,115200n8 nvme_core.io_timeout=4294967295 rd.emergency=poweroff rd.shell=0 selinux=1 security=selinux quiet

@@ -1,0 +1,8 @@
+image_name="al2023-ami"
+image_version="2023"
+image_arch="x86_64"
+image_file="al2023-ami-2023.1.20230809.0-kernel-6.1-x86_64.xfs.gpt"
+image_stamp="6462-223c"
+image_date="20230807223948"
+recipe_name="al2023 ami"
+recipe_id="547117e2-a4cc-e62b-13ea-52fd-de4b-7db9-23ea2ec9"

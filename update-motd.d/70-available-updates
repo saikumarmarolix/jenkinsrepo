@@ -1,0 +1,35 @@
+#!/usr/bin/sh
+
+# Updates to current release
+# Possible summaries include:
+# No packages needed for security; %d packages available
+# %d package(s) needed[ (+%d related)] for security, out of %d available
+# There are [[%d security update(s)[ out of ]%d total update(s)]] available
+LANG=C timeout 30s /usr/bin/dnf \
+    --debuglevel 2 \
+    updateinfo 2>/dev/null \
+        | grep -Pzo '.*Updates(.*\n)*' \
+    && echo 'Run "sudo dnf update" to apply all updates.'
+
+# New OS releases and versions
+#
+# Example summary:
+#
+# A newer release of "Amazon Linux" is available.
+#   Version 2023.0.20230824:
+#   Version 2023.0.20230831:
+# A new version of "Amazon Linux" is available!
+#   Version 2024.0.20240915:
+
+# don't be noisy if plugin is missing
+if rpm -q --quiet dnf-plugin-release-notification; then
+    LANG=C timeout 30s /usr/bin/dnf \
+        check-release-update 2>&1 |
+    awk 'function pline() { printf any?"%s\n":"\n%s\n", $0; any=1; }
+         /newer release.*is available/  { sub("^ *", ""); pline(); }
+         /new version.*is available/    { sub("^ *", ""); pline(); }
+         /Version .*:/                  { print; }
+         END { if (any) {
+                print "Run \"/usr/bin/dnf check-release-update\" for full release and version update info";
+             } }'
+fi

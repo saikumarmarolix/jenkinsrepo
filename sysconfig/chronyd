@@ -1,0 +1,7 @@
+# Command-line options for chronyd
+OPTIONS="-F 2"
+
+# Use the Amazon NTP Pool for leap smearing support
+# Set this to "no" to prevent /etc/chrony.d/amazon-pool.sources
+# from being re-generated upon restart of chronyd
+USE_AMAZON_NTP_POOL="yes"

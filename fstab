@@ -1,0 +1,3 @@
+#
+UUID=985fb096-4ab0-476d-a220-d46fd6bcaa23     /           xfs    defaults,noatime  1   1
+UUID=2480-141F        /boot/efi       vfat    defaults,noatime,uid=0,gid=0,umask=0077,shortname=winnt,x-systemd.automount 0 2

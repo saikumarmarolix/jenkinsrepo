@@ -1,0 +1,19 @@
+[kernel-livepatch]
+name=Amazon Linux 2023 Kernel Livepatch repository
+mirrorlist=https://al2023-repos-$awsregion-de612dc2.s3.dualstack.$awsregion.$awsdomain/kernel-livepatch/mirrors/al2023/$basearch/mirror.list
+priority=10
+enabled=1
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-amazon-linux-2023
+
+[kernel-livepatch-source]
+name=Amazon Linux 2023 Kernel Livepatch repository - Source packages
+mirrorlist=https://al2023-repos-$awsregion-de612dc2.s3.dualstack.$awsregion.$awsdomain/kernel-livepatch/mirrors/al2023/SRPMS/mirror.list
+enabled=0
+repo_gpgcheck=0
+type=rpm
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-amazon-linux-2023
+metadata_expire=6h
